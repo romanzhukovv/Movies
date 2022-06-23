@@ -52,13 +52,53 @@
 		FC1B302B2864DE3D00DA04E5 /* Movies */ = {
 			isa = PBXGroup;
 			children = (
-				FC1B302C2864DE3D00DA04E5 /* AppDelegate.swift */,
-				FC1B30302864DE3D00DA04E5 /* ViewController.swift */,
-				FC1B30352864DE3E00DA04E5 /* Assets.xcassets */,
+				FC1B30422864E0AF00DA04E5 /* SupportingFiles */,
+				FC1B30442864E14D00DA04E5 /* MoviesCollection */,
+				FC1B30412864E0A600DA04E5 /* Models */,
+				FC1B30402864E08500DA04E5 /* Services */,
+				FC1B30432864E0F700DA04E5 /* Resources */,
 				FC1B30372864DE3E00DA04E5 /* LaunchScreen.storyboard */,
-				FC1B303A2864DE3E00DA04E5 /* Info.plist */,
 			);
 			path = Movies;
+			sourceTree = "<group>";
+		};
+		FC1B30402864E08500DA04E5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		FC1B30412864E0A600DA04E5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FC1B30422864E0AF00DA04E5 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				FC1B302C2864DE3D00DA04E5 /* AppDelegate.swift */,
+				FC1B303A2864DE3E00DA04E5 /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		FC1B30432864E0F700DA04E5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FC1B30352864DE3E00DA04E5 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FC1B30442864E14D00DA04E5 /* MoviesCollection */ = {
+			isa = PBXGroup;
+			children = (
+				FC1B30302864DE3D00DA04E5 /* ViewController.swift */,
+			);
+			path = MoviesCollection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,7 +315,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4ARG8W2BQX;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Movies/Info.plist;
+				INFOPLIST_FILE = Movies/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -303,7 +343,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4ARG8W2BQX;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Movies/Info.plist;
+				INFOPLIST_FILE = Movies/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
