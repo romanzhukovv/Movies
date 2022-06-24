@@ -15,10 +15,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = MovieDetailsViewController()
+        window?.rootViewController = UINavigationController(rootViewController: MoviesCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout()))
         window?.makeKeyAndVisible()
         
+        setupNavigationBar()
+        
         return true
+    }
+    
+    private func setupNavigationBar() {
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
+        UINavigationBar.appearance().prefersLargeTitles = true
+        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
+        UINavigationBar.appearance().standardAppearance = navBarAppearance
     }
 
 }

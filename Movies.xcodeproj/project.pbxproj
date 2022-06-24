@@ -20,6 +20,7 @@
 		FC78D5B32866498D005A862A /* MovieDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC78D5B22866498D005A862A /* MovieDetailsInteractor.swift */; };
 		FC78D5B5286649A0005A862A /* MovieDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC78D5B4286649A0005A862A /* MovieDetailsConfigurator.swift */; };
 		FC78D5B828664AD7005A862A /* MovieViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC78D5B728664AD7005A862A /* MovieViewCell.swift */; };
+		FC78D5BA28665AC2005A862A /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC78D5B928665AC2005A862A /* Movie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		FC78D5B22866498D005A862A /* MovieDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsInteractor.swift; sourceTree = "<group>"; };
 		FC78D5B4286649A0005A862A /* MovieDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsConfigurator.swift; sourceTree = "<group>"; };
 		FC78D5B728664AD7005A862A /* MovieViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewCell.swift; sourceTree = "<group>"; };
+		FC78D5B928665AC2005A862A /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 		FC1B30412864E0A600DA04E5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FC78D5B928665AC2005A862A /* Movie.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 			files = (
 				FC78D5A728664866005A862A /* MoviesCollectionViewController.swift in Sources */,
 				FC78D5AD286648D9005A862A /* MoviesCollectionConfigurator.swift in Sources */,
+				FC78D5BA28665AC2005A862A /* Movie.swift in Sources */,
 				FC78D5AB286648B2005A862A /* MoviesCollectionInteractor.swift in Sources */,
 				FC78D5A92866488A005A862A /* MoviesCollectionPresenter.swift in Sources */,
 				FC78D5B5286649A0005A862A /* MovieDetailsConfigurator.swift in Sources */,

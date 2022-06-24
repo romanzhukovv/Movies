@@ -6,3 +6,24 @@
 //
 
 import Foundation
+
+protocol MoviesCollectionInteractorInputProtocol: AnyObject {
+    init(presenter: MoviesCollectionInteractorOutputProtocol)
+    func fetchMovies()
+}
+
+protocol MoviesCollectionInteractorOutputProtocol: AnyObject {
+    func moviesDidReceive(movies: [Movie])
+}
+
+class MoviesCollectionInteractor: MoviesCollectionInteractorInputProtocol {
+    unowned let presenter: MoviesCollectionInteractorOutputProtocol
+    
+    required init(presenter: MoviesCollectionInteractorOutputProtocol) {
+        self.presenter = presenter
+    }
+    
+    func fetchMovies() {
+
+    }
+}

@@ -6,3 +6,22 @@
 //
 
 import Foundation
+
+class MoviesCollectionPresenter: MoviesCollectionViewOutputProtocol {
+    unowned let view: MoviesCollectionViewInputProtocol
+    var interactor: MoviesCollectionInteractorInputProtocol! //ALERT//
+    
+    required init(view: MoviesCollectionViewInputProtocol) {
+        self.view = view
+    }
+    
+    func getMovies() {
+        interactor.fetchMovies()
+    }
+}
+
+extension MoviesCollectionPresenter : MoviesCollectionInteractorOutputProtocol {
+    func moviesDidReceive(movies: [Movie]) {
+        
+    }
+}
