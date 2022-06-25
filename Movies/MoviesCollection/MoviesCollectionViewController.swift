@@ -25,7 +25,6 @@ class MoviesCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configurator.configure(with: self)
         presenter.getMovies()
         
@@ -46,6 +45,11 @@ class MoviesCollectionViewController: UICollectionViewController {
         let cellViewModel = section.rows[indexPath.row]
         cell.viewModel = cellViewModel
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailVC = MovieDetailsViewController()
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 

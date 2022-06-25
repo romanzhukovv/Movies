@@ -27,10 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
         navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
+//        UINavigationBar.appearance().standardAppearance.configureWithTransparentBackground()
         UINavigationBar.appearance().prefersLargeTitles = true
         UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
         UINavigationBar.appearance().standardAppearance = navBarAppearance
     }
-
 }
 
