@@ -13,7 +13,7 @@ protocol MoviesCollectionInteractorInputProtocol: AnyObject {
 }
 
 protocol MoviesCollectionInteractorOutputProtocol: AnyObject {
-    func moviesDidReceive(movies: [Movie])
+    func moviesDidReceive(movies: String)
 }
 
 class MoviesCollectionInteractor: MoviesCollectionInteractorInputProtocol {
@@ -24,6 +24,6 @@ class MoviesCollectionInteractor: MoviesCollectionInteractorInputProtocol {
     }
     
     func fetchMovies() {
-
+        presenter.moviesDidReceive(movies: "black")
     }
 }

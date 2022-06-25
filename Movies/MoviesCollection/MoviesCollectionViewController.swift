@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MoviesCollectionViewInputProtocol: AnyObject {
-    
+    func changeBackgroundColor(color: String)
 }
 
 protocol MoviesCollectionViewOutputProtocol: AnyObject {
@@ -19,14 +19,16 @@ protocol MoviesCollectionViewOutputProtocol: AnyObject {
 class MoviesCollectionViewController: UICollectionViewController {
     
     var presenter: MoviesCollectionViewOutputProtocol! //ALERT//
+    
+    private let configurator: MoviesCollectionConfiguratorInputProtocol = MoviesCollectionConfigurator()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configurator.configure(with: self)
         presenter.getMovies()
         title = "Movies"
-        collectionView.backgroundColor = .white
+//        collectionView.backgroundColor = .white
         self.collectionView!.register(MovieViewCell.self, forCellWithReuseIdentifier: MovieViewCell.reuseId)
-
     }
 
     // MARK: UICollectionViewDataSource
@@ -57,5 +59,11 @@ extension MoviesCollectionViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension MoviesCollectionViewController: MoviesCollectionViewInputProtocol {
+    func changeBackgroundColor(color: String) {
+        if color == "black" {
+            collectionView.backgroundColor = .black
+        }
+    }
+    
     
 }

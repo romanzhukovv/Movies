@@ -21,7 +21,7 @@ class MoviesCollectionPresenter: MoviesCollectionViewOutputProtocol {
 }
 
 extension MoviesCollectionPresenter : MoviesCollectionInteractorOutputProtocol {
-    func moviesDidReceive(movies: [Movie]) {
-        
+    func moviesDidReceive(movies: String) {
+        view.changeBackgroundColor(color: movies)
     }
 }

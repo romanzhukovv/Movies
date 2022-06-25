@@ -6,3 +6,17 @@
 //
 
 import Foundation
+
+protocol MoviesCollectionConfiguratorInputProtocol {
+    func configure(with viewController: MoviesCollectionViewController)
+}
+
+class MoviesCollectionConfigurator: MoviesCollectionConfiguratorInputProtocol {
+    func configure(with viewController: MoviesCollectionViewController) {
+        let presenter = MoviesCollectionPresenter(view: viewController)
+        let interactor = MoviesCollectionInteractor(presenter: presenter)
+        
+        viewController.presenter = presenter
+        presenter.interactor = interactor
+    }
+}
