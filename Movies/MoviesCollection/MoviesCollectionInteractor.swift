@@ -10,13 +10,16 @@ import Foundation
 protocol MoviesCollectionInteractorInputProtocol: AnyObject {
     init(presenter: MoviesCollectionInteractorOutputProtocol)
     func fetchMovies()
+    func getMovie(at indexPath: IndexPath)
 }
 
 protocol MoviesCollectionInteractorOutputProtocol: AnyObject {
     func moviesDidReceive(movies: [Movie])
+    func movieDidReceive(movie: Movie)
 }
 
 class MoviesCollectionInteractor: MoviesCollectionInteractorInputProtocol {
+    
     unowned let presenter: MoviesCollectionInteractorOutputProtocol
     
     required init(presenter: MoviesCollectionInteractorOutputProtocol) {
@@ -28,6 +31,17 @@ class MoviesCollectionInteractor: MoviesCollectionInteractorInputProtocol {
             switch result {
             case .success(let moviesData):
                 self.presenter.moviesDidReceive(movies: moviesData.results)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func getMovie(at indexPath: IndexPath) {
+        NetworkManager.shared.fetchMoviesData { [unowned self] result in
+            switch result {
+            case .success(let moviesData):
+                self.presenter.movieDidReceive(movie: moviesData.results[indexPath.row])
             case .failure(let error):
                 print(error)
             }

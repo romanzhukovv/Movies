@@ -7,12 +7,23 @@
 
 import UIKit
 
-class MovieDetailsViewController: UIViewController {
+protocol MovieDetailsViewInputProtocol: AnyObject {
+    
+}
 
+protocol MovieDetailsViewOutputProtocol: AnyObject {
+    init(view: MovieDetailsViewInputProtocol)
+}
+
+class MovieDetailsViewController: UIViewController {
+    var presenter: MovieDetailsViewOutputProtocol!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
     }
-    
 }
 
+extension MovieDetailsViewController: MovieDetailsViewInputProtocol {
+    
+}

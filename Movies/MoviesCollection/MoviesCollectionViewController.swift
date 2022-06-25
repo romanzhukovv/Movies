@@ -14,6 +14,7 @@ protocol MoviesCollectionViewInputProtocol: AnyObject {
 protocol MoviesCollectionViewOutputProtocol: AnyObject {
     init(view: MoviesCollectionViewInputProtocol)
     func getMovies()
+    func didSelectCell(at indexPath: IndexPath)
 }
 
 class MoviesCollectionViewController: UICollectionViewController {
@@ -48,8 +49,7 @@ class MoviesCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailVC = MovieDetailsViewController()
-        navigationController?.pushViewController(detailVC, animated: true)
+        presenter.didSelectCell(at: indexPath)
     }
 }
 
