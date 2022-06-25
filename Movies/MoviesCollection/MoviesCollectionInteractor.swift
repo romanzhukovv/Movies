@@ -13,7 +13,7 @@ protocol MoviesCollectionInteractorInputProtocol: AnyObject {
 }
 
 protocol MoviesCollectionInteractorOutputProtocol: AnyObject {
-    func moviesDidReceive(movies: String)
+    func moviesDidReceive(movies: [Movie])
 }
 
 class MoviesCollectionInteractor: MoviesCollectionInteractorInputProtocol {
@@ -24,6 +24,13 @@ class MoviesCollectionInteractor: MoviesCollectionInteractorInputProtocol {
     }
     
     func fetchMovies() {
-        presenter.moviesDidReceive(movies: "black")
+        NetworkManager.shared.fetchMoviesData { [unowned self] result in
+            switch result {
+            case .success(let moviesData):
+                self.presenter.moviesDidReceive(movies: moviesData.results)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
