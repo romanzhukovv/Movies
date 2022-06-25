@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MoviesCollectionViewInputProtocol: AnyObject {
-    func sendMovies(movies: [Movie])
+    func reloadCells(section: MovieSectionViewModel)
 }
 
 protocol MoviesCollectionViewOutputProtocol: AnyObject {
@@ -17,10 +17,11 @@ protocol MoviesCollectionViewOutputProtocol: AnyObject {
 }
 
 class MoviesCollectionViewController: UICollectionViewController {
-    private var movies: [Movie] = [] //ALERT//
     var presenter: MoviesCollectionViewOutputProtocol! //ALERT//
     
     private let configurator: MoviesCollectionConfiguratorInputProtocol = MoviesCollectionConfigurator()
+    
+    private var section: SectionRowRepresentable = MovieSectionViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,19 +32,19 @@ class MoviesCollectionViewController: UICollectionViewController {
         title = "Movies"
         collectionView.backgroundColor = .white
         
-        self.collectionView!.register(MovieViewCell.self, forCellWithReuseIdentifier: MovieViewCell.reuseId)
+        self.collectionView!.register(MovieViewCell.self, forCellWithReuseIdentifier: MovieCellViewModel.reuseId)
     }
 
     // MARK: UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        movies.count
+        self.section.rows.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieViewCell.reuseId, for: indexPath) as? MovieViewCell else { return UICollectionViewCell() }
-        let movie = movies[indexPath.row]
-        cell.configureCell(movie: movie)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCellViewModel.reuseId, for: indexPath) as? MovieViewCell else { return UICollectionViewCell() }
+        let cellViewModel = section.rows[indexPath.row]
+        cell.viewModel = cellViewModel
         return cell
     }
 }
@@ -54,7 +55,7 @@ extension MoviesCollectionViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        1
+        30
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -63,8 +64,8 @@ extension MoviesCollectionViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension MoviesCollectionViewController: MoviesCollectionViewInputProtocol {
-    func sendMovies(movies: [Movie]) {
-        self.movies = movies
+    func reloadCells(section: MovieSectionViewModel) {
+        self.section = section
         collectionView.reloadData()
     }
 }

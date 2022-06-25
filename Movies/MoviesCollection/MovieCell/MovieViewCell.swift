@@ -8,8 +8,16 @@
 import UIKit
 import Kingfisher
 
-class MovieViewCell: UICollectionViewCell {
-    static let reuseId = "MovieCell"
+protocol CellModelRepresentable {
+    var viewModel: CellIdentifiable? { get set }
+}
+
+class MovieViewCell: UICollectionViewCell, CellModelRepresentable {
+    var viewModel: CellIdentifiable? {
+        didSet {
+            updateView()
+        }
+    }
     
     private let posterImageView = UIImageView()
     
@@ -23,8 +31,10 @@ class MovieViewCell: UICollectionViewCell {
 }
 
 extension MovieViewCell {
-    func configureCell(movie: Movie) {
-        guard let url = URL(string: "https://image.tmdb.org/t/p/w500" + movie.poster_path) else { return }
+    private func updateView() {
+        guard let viewModel = viewModel as? MovieCellViewModel else { return }
+        
+        guard let url = URL(string: "https://image.tmdb.org/t/p/w500" + viewModel.posterPath) else { return }
         posterImageView.kf.setImage(with: url)
         
         posterImageView.contentMode = .scaleAspectFit

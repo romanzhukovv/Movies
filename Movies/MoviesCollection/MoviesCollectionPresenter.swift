@@ -22,6 +22,13 @@ class MoviesCollectionPresenter: MoviesCollectionViewOutputProtocol {
 
 extension MoviesCollectionPresenter : MoviesCollectionInteractorOutputProtocol {
     func moviesDidReceive(movies: [Movie]) {
-        view.sendMovies(movies: movies)
+        let section = MovieSectionViewModel()
+        
+        for movie in movies {
+            let cellViewModel = MovieCellViewModel(movie: movie)
+            section.rows.append(cellViewModel)
+        }
+        
+        view.reloadCells(section: section)
     }
 }
