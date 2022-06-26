@@ -18,6 +18,11 @@ protocol SectionRowRepresentable {
 class MovieCellViewModel: CellIdentifiable {
     let posterPath: String
     let movieTitle: String
+    let voteAverage: Double
+    
+    var voteColor: String {
+        voteAverage > 6.9 ? "green" : "orange"
+    }
     
     static var reuseId: String {
         "MovieCell"
@@ -26,6 +31,7 @@ class MovieCellViewModel: CellIdentifiable {
     init(movie: Movie) {
         posterPath = movie.poster_path
         movieTitle = movie.title
+        voteAverage = movie.vote_average
     }
 }
 

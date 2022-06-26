@@ -29,7 +29,7 @@ class MovieDetailsViewController: UIViewController {
     private let horizontalStackView = UIStackView()
     private let releaseDateLabel = UILabel()
     private let voteAverageLabel = UILabel()
-    private let overviewLabel = UITextView()
+    private let overviewTextView = UITextView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,11 +58,11 @@ extension MovieDetailsViewController: MovieDetailsViewInputProtocol {
     }
     
     func displayOverview(overview: String) {
-        overviewLabel.text = overview
+        overviewTextView.text = overview
     }
     
     func getVoteColor(color: String) {
-        voteAverageLabel.textColor = color == "green" ? .green : .orange
+        voteAverageLabel.textColor = color == "green" ? .systemGreen : .systemOrange
     }
 }
 
@@ -86,18 +86,20 @@ extension MovieDetailsViewController {
         voteAverageLabel.textAlignment = .right
         voteAverageLabel.font = UIFont.systemFont(ofSize: 24, weight: .heavy)
         
-        overviewLabel.textAlignment = .justified
-        overviewLabel.backgroundColor = .black
-        overviewLabel.textColor = .white
-        overviewLabel.isEditable = false
-        overviewLabel.font = UIFont.systemFont(ofSize: 16)
+        overviewTextView.textAlignment = .justified
+        overviewTextView.backgroundColor = .black
+        overviewTextView.textColor = .white
+        overviewTextView.isEditable = false
+        overviewTextView.font = UIFont.systemFont(ofSize: 16)
+        overviewTextView.textContainerInset = .zero
+        overviewTextView.textContainer.lineFragmentPadding = 0
         
         view.addSubview(movieImageView)
         view.addSubview(titleLabel)
         view.addSubview(horizontalStackView)
         horizontalStackView.addArrangedSubview(releaseDateLabel)
         horizontalStackView.addArrangedSubview(voteAverageLabel)
-        view.addSubview(overviewLabel)
+        view.addSubview(overviewTextView)
         
         addConstraints()
     }
@@ -106,7 +108,7 @@ extension MovieDetailsViewController {
         movieImageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
-        overviewLabel.translatesAutoresizingMaskIntoConstraints = false
+        overviewTextView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             movieImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -121,10 +123,10 @@ extension MovieDetailsViewController {
             horizontalStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             horizontalStackView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 50),
             
-            overviewLabel.topAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: 30),
-            overviewLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            overviewLabel.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 50),
-            overviewLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            overviewTextView.topAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: 30),
+            overviewTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            overviewTextView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 50),
+            overviewTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
