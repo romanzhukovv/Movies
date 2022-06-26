@@ -9,7 +9,7 @@ import Foundation
 
 class MoviesCollectionPresenter: MoviesCollectionViewOutputProtocol {
     unowned let view: MoviesCollectionViewInputProtocol
-    var interactor: MoviesCollectionInteractorInputProtocol! //ALERT//
+    var interactor: MoviesCollectionInteractorInputProtocol!
     var router: MovieCollectionRouterInputProtocol!
     
     required init(view: MoviesCollectionViewInputProtocol) {

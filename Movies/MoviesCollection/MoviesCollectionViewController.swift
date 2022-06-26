@@ -18,13 +18,11 @@ protocol MoviesCollectionViewOutputProtocol: AnyObject {
 }
 
 class MoviesCollectionViewController: UICollectionViewController {
-    var presenter: MoviesCollectionViewOutputProtocol! //ALERT//
+    var presenter: MoviesCollectionViewOutputProtocol!
     
     private let configurator: MoviesCollectionConfiguratorInputProtocol = MoviesCollectionConfigurator()
     
     private var section: SectionRowRepresentable = MovieSectionViewModel()
-    
-//    private var fetchingMoreMovies = false
     
     private let itemsPerRow: CGFloat = 2
     private let sectionInserts = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
@@ -56,18 +54,6 @@ class MoviesCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter.didSelectCell(at: indexPath)
     }
-    
-//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let offsetY = scrollView.contentOffset.y
-//        let contentHeight = scrollView.contentSize.height
-//        
-//        if offsetY > contentHeight - scrollView.frame.height {
-//            if !fetchingMoreMovies {
-//                fetchingMoreMovies = true
-//                print("fetch")
-//            }
-//        }
-//    }
 }
 
 extension MoviesCollectionViewController: UICollectionViewDelegateFlowLayout {
