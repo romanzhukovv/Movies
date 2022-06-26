@@ -35,7 +35,7 @@ extension MovieViewCell {
         guard let viewModel = viewModel as? MovieCellViewModel else { return }
         
         guard let url = URL(string: "https://image.tmdb.org/t/p/w500" + viewModel.posterPath) else { return }
-        posterImageView.kf.setImage(with: url)
+        posterImageView.kf.setImage(with: url, options: [.transition(.fade(0.7))])
         
         posterImageView.contentMode = .scaleAspectFit
 //        posterImageView.clipsToBounds = true

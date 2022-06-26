@@ -9,6 +9,10 @@ import UIKit
 
 protocol MovieDetailsViewInputProtocol: AnyObject {
     func displayMovieImage(imagePath: String)
+    func displayMovieTitle(movieTitle: String)
+    func displayReleaseDate(releaseDate: String)
+    func displayVoteAverage(voteAverage: Double)
+    func displayOverview(overview: String)
 }
 
 protocol MovieDetailsViewOutputProtocol: AnyObject {
@@ -29,9 +33,27 @@ class MovieDetailsViewController: UIViewController {
 }
 
 extension MovieDetailsViewController: MovieDetailsViewInputProtocol {
+    
+    
     func displayMovieImage(imagePath: String) {
         guard let url = URL(string: "https://image.tmdb.org/t/p/original" + imagePath) else { return }
-        movieImageView.kf.setImage(with: url)
+        movieImageView.kf.setImage(with: url, options: [.transition(.fade(0.7))])
+    }
+    
+    func displayMovieTitle(movieTitle: String) {
+        
+    }
+    
+    func displayReleaseDate(releaseDate: String) {
+        
+    }
+    
+    func displayVoteAverage(voteAverage: Double) {
+        
+    }
+    
+    func displayOverview(overview: String) {
+        
     }
 }
 
@@ -40,7 +62,6 @@ extension MovieDetailsViewController {
         view.backgroundColor = .black
         
         movieImageView.contentMode = .scaleAspectFit
-//        movieImageView.clipsToBounds = true
         
         view.addSubview(movieImageView)
         addConstraints()
