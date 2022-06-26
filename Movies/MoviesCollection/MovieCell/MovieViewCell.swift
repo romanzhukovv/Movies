@@ -61,6 +61,7 @@ extension MovieViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(voteView)
         voteView.addSubview(voteLabel)
+        
         addConstraints()
     }
     
