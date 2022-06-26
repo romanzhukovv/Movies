@@ -50,6 +50,7 @@
 		FC78D5B4286649A0005A862A /* MovieDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsConfigurator.swift; sourceTree = "<group>"; };
 		FC78D5B728664AD7005A862A /* MovieViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewCell.swift; sourceTree = "<group>"; };
 		FC78D5B928665AC2005A862A /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		FC9229DA2868D28500C58588 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +85,7 @@
 		FC1B30202864DE3D00DA04E5 = {
 			isa = PBXGroup;
 			children = (
+				FC9229DA2868D28500C58588 /* README.md */,
 				FC1B302B2864DE3D00DA04E5 /* Movies */,
 				FC1B302A2864DE3D00DA04E5 /* Products */,
 				1455C8DCAA8FB8202872CED7 /* Pods */,
