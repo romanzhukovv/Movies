@@ -35,7 +35,7 @@ class MovieViewCell: UICollectionViewCell, CellModelRepresentable {
 
 extension MovieViewCell {
     private func updateView() {
-        contentView.backgroundColor = .darkGray
+        contentView.backgroundColor = .black
         guard let viewModel = viewModel as? MovieCellViewModel else { return }
         
         guard let url = URL(string: "https://image.tmdb.org/t/p/w500" + viewModel.posterPath) else { return }
