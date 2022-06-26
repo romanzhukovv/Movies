@@ -30,7 +30,7 @@ class MoviesCollectionViewController: UICollectionViewController {
         presenter.getMovies()
         
         title = "Movies"
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .black
         
         self.collectionView!.register(MovieViewCell.self, forCellWithReuseIdentifier: MovieCellViewModel.reuseId)
     }

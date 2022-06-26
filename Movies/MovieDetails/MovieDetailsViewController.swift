@@ -8,22 +8,51 @@
 import UIKit
 
 protocol MovieDetailsViewInputProtocol: AnyObject {
-    
+    func displayMovieImage(imagePath: String)
 }
 
 protocol MovieDetailsViewOutputProtocol: AnyObject {
     init(view: MovieDetailsViewInputProtocol)
+    func showDetails()
 }
 
 class MovieDetailsViewController: UIViewController {
     var presenter: MovieDetailsViewOutputProtocol!
     
+    private let movieImageView = UIImageView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        setupUI()
+        presenter.showDetails()
     }
 }
 
 extension MovieDetailsViewController: MovieDetailsViewInputProtocol {
+    func displayMovieImage(imagePath: String) {
+        guard let url = URL(string: "https://image.tmdb.org/t/p/original" + imagePath) else { return }
+        movieImageView.kf.setImage(with: url)
+    }
+}
+
+extension MovieDetailsViewController {
+    private func setupUI() {
+        view.backgroundColor = .black
+        
+        movieImageView.contentMode = .scaleAspectFit
+//        movieImageView.clipsToBounds = true
+        
+        view.addSubview(movieImageView)
+        addConstraints()
+    }
     
+    private func addConstraints() {
+        movieImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            movieImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            movieImageView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            movieImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 1.778)
+        ])
+    }
 }
