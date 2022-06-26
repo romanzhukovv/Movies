@@ -12,7 +12,7 @@
 
 ## Демонстрация функционала
 
-[https://github.com/romanzhukovv/Movies/blob/main/GIFs/Movies.gif]
+![Movies](https://github.com/romanzhukovv/Movies/blob/main/GIFs/Movies.gif)
 
 ## Реализованный функционал
 
