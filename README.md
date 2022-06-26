@@ -12,6 +12,8 @@
 
 ## Демонстрация функционала
 
+[https://github.com/romanzhukovv/Movies/blob/main/GIFs/Movies.gif]
+
 ## Реализованный функционал
 
 1. Реализовано 2 модуля по архитектуре VIPER.
