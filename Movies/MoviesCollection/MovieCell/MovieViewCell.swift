@@ -20,6 +20,7 @@ class MovieViewCell: UICollectionViewCell, CellModelRepresentable {
     }
     
     private let posterImageView = UIImageView()
+    private let titleLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -32,25 +33,39 @@ class MovieViewCell: UICollectionViewCell, CellModelRepresentable {
 
 extension MovieViewCell {
     private func updateView() {
+        contentView.backgroundColor = .darkGray
         guard let viewModel = viewModel as? MovieCellViewModel else { return }
         
         guard let url = URL(string: "https://image.tmdb.org/t/p/w500" + viewModel.posterPath) else { return }
         posterImageView.kf.setImage(with: url, options: [.transition(.fade(0.7))])
+        posterImageView.contentMode = .scaleAspectFill
+        posterImageView.clipsToBounds = true
         
-        posterImageView.contentMode = .scaleAspectFit
-//        posterImageView.clipsToBounds = true
+        titleLabel.text = viewModel.movieTitle
+        titleLabel.textAlignment = .center
+        titleLabel.numberOfLines = 0
+        titleLabel.textColor = .white
+        titleLabel.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        
         contentView.addSubview(posterImageView)
+        contentView.addSubview(titleLabel)
         addConstraints()
     }
     
     private func addConstraints() {
         posterImageView.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            posterImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            posterImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            posterImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            posterImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor)
+            posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            posterImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            posterImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant:  -50),
+            
+            titleLabel.topAnchor.constraint(equalTo: posterImageView.bottomAnchor, constant: 5),
+            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            titleLabel.widthAnchor.constraint(equalToConstant: contentView.bounds.width - 10),
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant:  -5)
         ])
     }
 }

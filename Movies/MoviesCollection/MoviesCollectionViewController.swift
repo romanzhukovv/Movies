@@ -23,6 +23,11 @@ class MoviesCollectionViewController: UICollectionViewController {
     private let configurator: MoviesCollectionConfiguratorInputProtocol = MoviesCollectionConfigurator()
     
     private var section: SectionRowRepresentable = MovieSectionViewModel()
+    
+//    private var fetchingMoreMovies = false
+    
+    private let itemsPerRow: CGFloat = 2
+    private let sectionInserts = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,19 +56,36 @@ class MoviesCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter.didSelectCell(at: indexPath)
     }
+    
+//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let offsetY = scrollView.contentOffset.y
+//        let contentHeight = scrollView.contentSize.height
+//        
+//        if offsetY > contentHeight - scrollView.frame.height {
+//            if !fetchingMoreMovies {
+//                fetchingMoreMovies = true
+//                print("fetch")
+//            }
+//        }
+//    }
 }
 
 extension MoviesCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: (view.frame.width - 1) / 2, height: (view.frame.width - 1) / 2)
+        let paddingSpace = sectionInserts.left * (itemsPerRow + 1)
+        let availableWidth = view.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+        let aspectRatio = 0.66
+        let height = widthPerItem / aspectRatio + 50
+        return CGSize(width: widthPerItem, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        30
+        sectionInserts.left
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        1
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        sectionInserts
     }
 }
 
