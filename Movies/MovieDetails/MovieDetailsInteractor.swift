@@ -26,9 +26,11 @@ class MovieDetailsInteractor: MovieDetailsInteractorInputProtocol {
     }
     
     func provideMovieDetails() {
+        let releaseDate = String(movie.release_date.prefix(4))
+        
         let movieDetailsData = MovieDetailsData(movieImagePath: movie.backdrop_path,
                                                 movieTitle: movie.title,
-                                                releaseDate: movie.release_date,
+                                                releaseDate: releaseDate,
                                                 voteAverage: movie.vote_average,
                                                 overview: movie.overview)
         
