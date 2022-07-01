@@ -33,7 +33,6 @@ extension MoviesCollectionPresenter : MoviesCollectionInteractorOutputProtocol {
             let cellViewModel = MovieCellViewModel(movie: movie)
             section.rows.append(cellViewModel)
         }
-        
         view.reloadCells(section: section)
     }
     
