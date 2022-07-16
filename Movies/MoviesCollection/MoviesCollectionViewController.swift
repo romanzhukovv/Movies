@@ -9,15 +9,19 @@ import UIKit
 
 protocol MoviesCollectionViewInputProtocol: AnyObject {
     func reloadCells(section: MovieSectionViewModel)
+    func appendMoreCells(cells: [MovieCellViewModel])
 }
 
 protocol MoviesCollectionViewOutputProtocol: AnyObject {
     init(view: MoviesCollectionViewInputProtocol)
     func getMovies()
     func didSelectCell(at indexPath: IndexPath)
+    func getMoreMovies()
 }
 
 class MoviesCollectionViewController: UICollectionViewController {
+    var fetchingMore = false
+    
     var presenter: MoviesCollectionViewOutputProtocol!
     
     private let configurator: MoviesCollectionConfiguratorInputProtocol = MoviesCollectionConfigurator()
@@ -54,6 +58,24 @@ class MoviesCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter.didSelectCell(at: indexPath)
     }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+//        print(offsetY, contentHeight - scrollView.frame.height)
+        
+        if offsetY > contentHeight - scrollView.frame.height {
+            if !fetchingMore {
+                fetchingMore = true
+                print("fetch")
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    self.presenter.getMoreMovies()
+                    self.fetchingMore = false
+                }
+            }
+        }
+    }
 }
 
 extension MoviesCollectionViewController: UICollectionViewDelegateFlowLayout {
@@ -78,6 +100,11 @@ extension MoviesCollectionViewController: UICollectionViewDelegateFlowLayout {
 extension MoviesCollectionViewController: MoviesCollectionViewInputProtocol {
     func reloadCells(section: MovieSectionViewModel) {
         self.section = section
+        collectionView.reloadData()
+    }
+    
+    func appendMoreCells(cells: [MovieCellViewModel]) {
+        self.section.rows.append(contentsOf: cells)
         collectionView.reloadData()
     }
 }

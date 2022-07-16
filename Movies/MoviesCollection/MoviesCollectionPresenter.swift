@@ -23,6 +23,10 @@ class MoviesCollectionPresenter: MoviesCollectionViewOutputProtocol {
     func didSelectCell(at indexPath: IndexPath) {
         interactor.getMovie(at: indexPath)
     }
+    
+    func getMoreMovies() {
+        interactor.fetchMoreMovies()
+    }
 }
 
 extension MoviesCollectionPresenter : MoviesCollectionInteractorOutputProtocol {
@@ -38,5 +42,15 @@ extension MoviesCollectionPresenter : MoviesCollectionInteractorOutputProtocol {
     
     func movieDidReceive(movie: Movie) {
         router.openMovieDetailsViewController(with: movie)
+    }
+    
+    func moreMoviesDidReceive(movies: [Movie]) {
+        var cells: [MovieCellViewModel] = []
+        
+        for movie in movies {
+            let cellViewModel = MovieCellViewModel(movie: movie)
+            cells.append(cellViewModel)
+        }
+        view.appendMoreCells(cells: cells)
     }
 }
