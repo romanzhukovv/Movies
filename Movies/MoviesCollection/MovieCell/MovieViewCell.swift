@@ -42,6 +42,7 @@ extension MovieViewCell {
         posterImageView.kf.setImage(with: url, options: [.transition(.fade(0.7))])
         posterImageView.contentMode = .scaleAspectFill
         posterImageView.clipsToBounds = true
+        posterImageView.layer.cornerRadius = 10
         
         titleLabel.text = viewModel.movieTitle
         titleLabel.textAlignment = .center
