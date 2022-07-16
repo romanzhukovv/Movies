@@ -62,14 +62,13 @@ class MoviesCollectionViewController: UICollectionViewController {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
-//        print(offsetY, contentHeight - scrollView.frame.height)
         
-        if offsetY > contentHeight - scrollView.frame.height {
+        if offsetY > contentHeight - scrollView.frame.height * 4 {
             if !fetchingMore {
                 fetchingMore = true
                 print("fetch")
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                     self.presenter.getMoreMovies()
                     self.fetchingMore = false
                 }
