@@ -66,7 +66,6 @@ class MoviesCollectionViewController: UICollectionViewController {
         if offsetY > contentHeight - scrollView.frame.height * 4 {
             if !fetchingMore {
                 fetchingMore = true
-                print("fetch")
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                     self.presenter.getMoreMovies()
