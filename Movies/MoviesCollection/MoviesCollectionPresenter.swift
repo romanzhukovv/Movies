@@ -20,8 +20,8 @@ class MoviesCollectionPresenter: MoviesCollectionViewOutputProtocol {
         interactor.fetchMovies()
     }
     
-    func didSelectCell(at indexPath: IndexPath) {
-        interactor.getMovie(at: indexPath)
+    func didSelectCell(with movie: Movie) {
+        router.openMovieDetailsViewController(with: movie)
     }
     
     func getMoreMovies() {
@@ -40,9 +40,9 @@ extension MoviesCollectionPresenter : MoviesCollectionInteractorOutputProtocol {
         view.reloadCells(section: section)
     }
     
-    func movieDidReceive(movie: Movie) {
-        router.openMovieDetailsViewController(with: movie)
-    }
+//    func movieDidReceive(movie: Movie) {
+//        router.openMovieDetailsViewController(with: movie)
+//    }
     
     func moreMoviesDidReceive(movies: [Movie]) {
         var cells: [MovieCellViewModel] = []

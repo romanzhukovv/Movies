@@ -15,7 +15,8 @@ protocol MoviesCollectionViewInputProtocol: AnyObject {
 protocol MoviesCollectionViewOutputProtocol: AnyObject {
     init(view: MoviesCollectionViewInputProtocol)
     func getMovies()
-    func didSelectCell(at indexPath: IndexPath)
+//    func didSelectCell(at indexPath: IndexPath)
+    func didSelectCell(with movie: Movie)
     func getMoreMovies()
 }
 
@@ -56,7 +57,8 @@ class MoviesCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter.didSelectCell(at: indexPath)
+        let movie = section.rows[indexPath.row]
+        presenter.didSelectCell(with: movie)
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
