@@ -16,7 +16,7 @@ protocol MoviesCollectionViewOutputProtocol: AnyObject {
     init(view: MoviesCollectionViewInputProtocol)
     func getMovies()
 //    func didSelectCell(at indexPath: IndexPath)
-    func didSelectCell(with movie: Movie)
+    func didSelectCell(with cellViewModel: CellIdentifiable)
     func getMoreMovies()
 }
 
@@ -58,20 +58,18 @@ class MoviesCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cellViewModel = section.rows[indexPath.row]
-        guard let cellViewModel = cellViewModel as? MovieCellViewModel else { return }
-        cellViewModel.
-        presenter.didSelectCell(with: movie)
+        presenter.didSelectCell(with: cellViewModel)
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         
-        if offsetY > contentHeight - scrollView.frame.height * 4 {
+        if offsetY > contentHeight - scrollView.frame.height {
             if !fetchingMore {
                 fetchingMore = true
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self.presenter.getMoreMovies()
                     self.fetchingMore = false
                 }

@@ -16,6 +16,7 @@ protocol SectionRowRepresentable {
 }
 
 class MovieCellViewModel: CellIdentifiable {
+    let movie: Movie
     let posterPath: String
     let movieTitle: String
     let voteAverage: Double
@@ -29,6 +30,7 @@ class MovieCellViewModel: CellIdentifiable {
     }
     
     init(movie: Movie) {
+        self.movie = movie
         posterPath = movie.poster_path
         movieTitle = movie.title
         voteAverage = movie.vote_average

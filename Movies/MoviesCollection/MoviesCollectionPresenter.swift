@@ -20,8 +20,9 @@ class MoviesCollectionPresenter: MoviesCollectionViewOutputProtocol {
         interactor.fetchMovies()
     }
     
-    func didSelectCell(with movie: Movie) {
-        router.openMovieDetailsViewController(with: movie)
+    func didSelectCell(with cellViewModel: CellIdentifiable) {
+        guard let cellViewModel = cellViewModel as? MovieCellViewModel else { return }
+        router.openMovieDetailsViewController(with: cellViewModel.movie)
     }
     
     func getMoreMovies() {
