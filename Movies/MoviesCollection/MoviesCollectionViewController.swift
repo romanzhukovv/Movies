@@ -57,7 +57,9 @@ class MoviesCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let movie = section.rows[indexPath.row]
+        let cellViewModel = section.rows[indexPath.row]
+        guard let cellViewModel = cellViewModel as? MovieCellViewModel else { return }
+        cellViewModel.
         presenter.didSelectCell(with: movie)
     }
     
