@@ -11,7 +11,7 @@ protocol MoviesCollectionInteractorInputProtocol: AnyObject {
     init(presenter: MoviesCollectionInteractorOutputProtocol)
     func fetchMovies()
 //    func getMovie(at indexPath: IndexPath)
-    func fetchMoreMovies()
+    func fetchMoreMovies(for page: Int)
 }
 
 protocol MoviesCollectionInteractorOutputProtocol: AnyObject {
@@ -50,8 +50,8 @@ class MoviesCollectionInteractor: MoviesCollectionInteractorInputProtocol {
 //        }
 //    }
     
-    func fetchMoreMovies() {
-        NetworkManager.shared.fetchMoviesData { [unowned self] result in
+    func fetchMoreMovies(for page: Int) {
+        NetworkManager.shared.fetchMoviesData(for: page) { [unowned self] result in
             switch result {
             case .success(let moviesData):
                 self.presenter.moreMoviesDidReceive(movies: moviesData.results)

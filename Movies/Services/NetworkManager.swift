@@ -16,12 +16,12 @@ enum NetworkError: Error {
 class NetworkManager {
     static let shared = NetworkManager()
     
-    private let url = "https://api.themoviedb.org/3/movie/popular?api_key=b03f24523307900f601ab7c02b3bcd4b&language=en-US&page=1"
+    private let url = "https://api.themoviedb.org/3/movie/popular?api_key=b03f24523307900f601ab7c02b3bcd4b&language=en-US&page="
     
     private init() {}
     
-    func fetchMoviesData(completion: @escaping(Result<MoviesData, NetworkError>) -> Void) {
-        guard let url = URL(string: url) else {
+    func fetchMoviesData(for page: Int = 1, completion: @escaping(Result<MoviesData, NetworkError>) -> Void) {
+        guard let url = URL(string: url + String(page)) else {
             completion(.failure(.invalidURL))
             return
         }

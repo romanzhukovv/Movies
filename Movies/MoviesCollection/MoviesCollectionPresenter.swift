@@ -25,8 +25,8 @@ class MoviesCollectionPresenter: MoviesCollectionViewOutputProtocol {
         router.openMovieDetailsViewController(with: cellViewModel.movie)
     }
     
-    func getMoreMovies() {
-        interactor.fetchMoreMovies()
+    func getMoreMovies(for page: Int) {
+        interactor.fetchMoreMovies(for: page)
     }
 }
 

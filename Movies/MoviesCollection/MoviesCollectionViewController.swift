@@ -17,11 +17,12 @@ protocol MoviesCollectionViewOutputProtocol: AnyObject {
     func getMovies()
 //    func didSelectCell(at indexPath: IndexPath)
     func didSelectCell(with cellViewModel: CellIdentifiable)
-    func getMoreMovies()
+    func getMoreMovies(for page: Int)
 }
 
 class MoviesCollectionViewController: UICollectionViewController {
-    var fetchingMore = false
+    private var fetchingMore = false
+    private var page = 1
     
     var presenter: MoviesCollectionViewOutputProtocol!
     
@@ -70,7 +71,9 @@ class MoviesCollectionViewController: UICollectionViewController {
                 fetchingMore = true
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self.presenter.getMoreMovies()
+                    self.page += 1
+                    print(self.page)
+                    self.presenter.getMoreMovies(for: self.page)
                     self.fetchingMore = false
                 }
             }

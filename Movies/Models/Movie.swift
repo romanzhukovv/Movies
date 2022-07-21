@@ -8,11 +8,11 @@
 import Foundation
 
 struct Movie: Decodable {
-    let backdrop_path: String
-    let id: Int
-    let overview: String
-    let poster_path: String
-    let release_date: String
-    let title: String
-    let vote_average: Double
+    let backdrop_path: String?
+    let id: Int?
+    let overview: String?
+    let poster_path: String?
+    let release_date: String?
+    let title: String?
+    let vote_average: Double?
 }
