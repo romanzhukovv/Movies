@@ -31,9 +31,9 @@ class MovieCellViewModel: CellIdentifiable {
     
     init(movie: Movie) {
         self.movie = movie
-        posterPath = movie.poster_path
-        movieTitle = movie.title
-        voteAverage = movie.vote_average
+        posterPath = movie.poster_path ?? ""
+        movieTitle = movie.title ?? ""
+        voteAverage = movie.vote_average ?? 0.0
     }
 }
 
