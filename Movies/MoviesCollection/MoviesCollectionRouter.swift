@@ -13,6 +13,7 @@ protocol MovieCollectionRouterInputProtocol {
 }
 
 class MoviesCollectionRouter: MovieCollectionRouterInputProtocol {
+    
     unowned let viewController: MoviesCollectionViewController
     
     required init(viewController: MoviesCollectionViewController) {
