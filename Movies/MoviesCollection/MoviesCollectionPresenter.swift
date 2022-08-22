@@ -32,6 +32,7 @@ class MoviesCollectionPresenter: MoviesCollectionViewOutputProtocol {
 
 extension MoviesCollectionPresenter : MoviesCollectionInteractorOutputProtocol {
     func moviesDidReceive(movies: [Movie]) {
+        
         let section = MovieSectionViewModel()
         
         for movie in movies {
