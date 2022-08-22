@@ -21,7 +21,6 @@ protocol MoviesCollectionViewOutputProtocol: AnyObject {
 }
 
 class MoviesCollectionViewController: UICollectionViewController {
-    
     private var fetchingMore = false
     private var page = 1
     
@@ -33,6 +32,8 @@ class MoviesCollectionViewController: UICollectionViewController {
     
     private let itemsPerRow: CGFloat = 2
     private let sectionInserts = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+    
+    private let searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,8 @@ class MoviesCollectionViewController: UICollectionViewController {
         collectionView.backgroundColor = .black
         
         self.collectionView!.register(MovieViewCell.self, forCellWithReuseIdentifier: MovieCellViewModel.reuseId)
+        
+        setupSearchController()
     }
 
     // MARK: UICollectionViewDataSource
@@ -78,6 +81,15 @@ class MoviesCollectionViewController: UICollectionViewController {
                 }
             }
         }
+    }
+}
+
+extension MoviesCollectionViewController {
+    private func setupSearchController() {
+//        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search movie"
+        navigationItem.searchController = searchController
+        searchController.searchBar.searchTextField.textColor = .white
     }
 }
 
