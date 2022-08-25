@@ -21,6 +21,7 @@ protocol MoviesCollectionViewOutputProtocol: AnyObject {
 }
 
 class MoviesCollectionViewController: UICollectionViewController {
+    
     private var fetchingMore = false
     private var page = 1
     
